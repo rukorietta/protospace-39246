@@ -8,4 +8,5 @@ class User < ApplicationRecord
   validates :profile, length: { maximum: 200 }
   validates :occupation, length: { maximum: 50 }
   validates :position, length: { maximum: 50 }
+  has_many :prototypes
 end
