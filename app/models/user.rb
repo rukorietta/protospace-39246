@@ -9,4 +9,5 @@ class User < ApplicationRecord
   validates :occupation, length: { maximum: 50 }
   validates :position, length: { maximum: 50 }
   has_many :prototypes
+  has_many :comments, dependent: :destroy
 end
