@@ -1,4 +1,5 @@
 class PrototypesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
 
   def index
     @prototypes = Prototype.all
@@ -27,6 +28,9 @@ class PrototypesController < ApplicationController
 
    def edit
     @prototype = Prototype.find(params[:id])
+    unless @prototype.user == current_user
+      redirect_to root_path, alert: '投稿者以外は編集できません'
+    end
   end
 
   def update
@@ -43,6 +47,9 @@ class PrototypesController < ApplicationController
     prototype.destroy
     redirect_to root_path,notice:'プロトタイプを削除しました'
   end
+
+  # ログインしていなくてもアクセスできるようにする
+  skip_before_action :authenticate_user!, only: [:index, :show]
   
   private
   
