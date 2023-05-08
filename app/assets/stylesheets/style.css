@@ -235,6 +235,10 @@ a {
   text-decoration: underline;
 }
 
+textarea {
+  resize: none;
+}
+
 /* ユーザーページ */
 .user__wrapper{
   min-height: calc(100vh - 161px);
